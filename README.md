@@ -35,18 +35,38 @@ The following tree shows the contents of this repository,
 
 ```bash
 root
-|
-|___ /templates
-|             |___ index.html
-|             |___ resutl.html
-|___ /uploads
-|           |___ tiff images
-|
-|___ api.py
-|
-|___ model.pk
-|
-|___ Dockerfile
+|___ /workingModel
+|   |
+|   |___ /templates
+|   |    |___ index.html
+|   |    |___ resutl.html
+|   |
+|   |___ /uploads
+|   |    |___ .png images
+|   |
+|   |___ ml.py
+|   |
+|   |___ api.py
+|   |
+|   |___ visual.py
+|   |
+|   |___ convert.py
+|   |
+|   |___ model.pk
+|   |
+|   |___ Dockerfile
+|   |
+|   |___ requirements.txt
+|      
+|___/trainingModel
+|   |
+|   |___ landCover.ipynb
+|   |
+|   |___/trainingImage
+|   |   |___some images for training
+|   |
+|   |___/testImage
+|   |   |_ some images for testing
 
 ```
 
