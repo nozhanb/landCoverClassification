@@ -66,7 +66,7 @@ root
 |   |   |___some images for training
 |   |
 |   |___/testImage
-|   |   |_ some images for testing
+|   |   |___some images for testing
 
 ```
 
