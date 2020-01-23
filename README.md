@@ -4,7 +4,7 @@ The purpose of this process is to train a simple land cover classification model
 
 # 1. Introduction
 
-The land cover classification repository contains two set If you are only interested in running the model then you have to workFor those users who are just interested in running the model one can simply follow the ... In order to reproduce the results of this work, one has to have docker installed on their system. Note that this work is compatible with linux 18.04 and python 2.X (you may try python 3.X but it may not work).
+The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts of running a land model classification on a local browser via Docker containers. However, if you are intersted to train your own model, then you should navigate to the trainingModel directory and their you can train your model by replacing the already existing images with your own images (read 2.1 for more details on making a training data set).
 
 # 2. Model Training
 
