@@ -34,7 +34,8 @@ Next, one has to use the ___trainingTest.py___ code. This code is only applicabl
 The following tree shows the contents of this repository, 
 
 ```bash
-root
+root(landCoverClassifiation)
+|   
 |___ /workingModel
 |   |
 |   |___ /templates
