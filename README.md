@@ -87,7 +87,7 @@ Once you have downloaded/cloned the repository, use the ___Dockerfile___ to crea
 
 > docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
 
-> E.G. 123456789f scp dev:/home/docker/foo.txt .
+> e.g. ===> 123456789f scp dev:/home/docker/foo.txt .
 
 Where the above line given in the example transfers ___foo.txt___ located at ___dev:/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
 
