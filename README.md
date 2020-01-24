@@ -2,19 +2,19 @@
 
 The purpose of this process is to train a simple land cover classification model that is capable of classifing 5 different classes given a set of satellite images..
 
-# 1. Introduction
+## 1. Introduction
 
 The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts of running a land model classification on a local browser through a Docker container. However, if you are intersted in training your own model, then you should navigate to the trainingModel directory and there you can train your model by replacing the already existing images with your own images (read 2.1 for more details on making a training data set).
 
-# 2. Model Training
+## 2. Model Training
 
 In order to train the land cover classification model, one needs a training set and a test set. Below you can find a short description of the processes through which a training set and a test set were prepared.
 
-## 2.1 Satellite Imagery Acquisition
+### 2.1 Satellite Imagery Acquisition
 
 All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
 
-## 2.2 Training Data Set
+### 2.2 Training Data Set
 
 The aim is to create a ___CSV___ file with 5 different columns including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1,024,650 (1265 x 810) rows each for a pixel and five columns of which four showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done for five different classes of image each representing a land cover type.
 
@@ -23,7 +23,7 @@ The aim is to create a ___CSV___ file with 5 different columns including ___red_
 Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given intensity values of each pixel (see 2.2. for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
 
 
-# 3. Land Cover Classification Repository Tree
+## 3. Land Cover Classification Repository Tree
 
 The following tree shows the contents of this repository, 
 
@@ -67,7 +67,7 @@ root(landCoverClassifiation)
 
 Where in the following each of the contents is briefly explained.
 
-## 2.1 Content Description
+### 3.1 Content Description
 
 ___templates___: is a directory that contains two html files; ___index.html___ and ___result.html___. The two files are used in the ___api.py___ code to create an html page and give the ability to load the required images to run the classificatoin model. 
 
