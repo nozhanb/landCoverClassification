@@ -94,4 +94,4 @@ The above line in the example transfers ___foo.txt___ stored at ___dev:/home/doc
 
 ## 5. Performance
 
-It
+Given the model is simple and there has been no feature enginering involved, one cannot expect very accurate results. However, by running this model several times there 
