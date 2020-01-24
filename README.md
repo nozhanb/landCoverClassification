@@ -89,7 +89,7 @@ Once you have downloaded/cloned the repository, use the ___Dockerfile___ to crea
 
 > e.g. ===> 123456789f scp dev:/home/docker/foo.txt .
 
-Where the above line given in the example transfers ___foo.txt___ located at ___dev:/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
+The above line in the example transfers ___foo.txt___ stored at ___dev:/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
 
 
 ## 5. Performance
