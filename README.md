@@ -12,26 +12,18 @@ In order to train the land cover classification model, one needs a training set 
 
 ## 2.1 Satellite Imagery Acquisition
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory.
+All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
 
 ## 2.2 Training Data Set
 
-The aim is to create a ___CSV___ file with 5 different columns in including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1024650 (1265 x 810) rows for each pixel in that image and five columns four of which showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done five different images each representing a land cover type.
+The aim is to create a ___CSV___ file with 5 different columns including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1,024,650 (1265 x 810) rows each for a pixel and five columns of which four showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done for five different classes of image each representing a land cover type.
 
 ### 2.3 Test Data Set
 
-Test set preparation process is similar to the training set preparation process with one difference. The difference comes from the fact that in the test set we will not have 
-
-In order to train a land cover classification model one needs a training dataset. To prepare your training and test datasets one has to run the first block and the second block of the notebook.
-
-___Method 1___: ___ONLY___ uses the red, green, and blue intensity values of the images. While with this method a CSV table can be easily made it comes at the price of excluding infrared values. Lack of infrared data may result in a less accurate classification model. This may prove particularly true for classes such as vegetation and water where infrared can provide very distinctive values compared to other channels for the same classes. If this method is chosen, the user can simply download the AOI from the [EO Browser](https://www.sentinel-hub.com/explore/eobrowser) and download the image as a RGB image. Then, using a image editing tools (e.g. paint in windows) one can crop the different types of land cover from the original image and save them in a directory. Next, using a python library for image processing sush as ___PIL___ the user can read in the pixels of each cropped land type (e.g. vegetation, water) and add the RGB values to the CSV file along with the class of the pixel.
-
-___Method 2___: Includes the infrared values too. If this method is chosen, the user needs to download the images (of the area to be classified) in the form of ___tiff___ images from the [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). Note that unlike method 1 that there is only one true color image with three channels, in method 2 there needs to be one true color image and four different ___tiff___ images of the same aera each for one of the channels (as provided in the images directory???). (Note that to be able to download ___monochoromatic tiff___ images you need to create an account in EO Browser.) Similar to method 1, the areas of interest need to be cropped out of the original true color image and the cropped out areas should be collected and stored in a folder called ___cropped___.
-
-Next, one has to use the ___trainingTest.py___ code. This code is only applicable to method 2! Also, note that this code contains all the training set, test set, and model preparation steps. In the first part, ___trainingTest.py___ reads in four monochoromatic images. Next, it uses the meta data of the tiff images and an ___affine___ matrix to build and assign a pair of ___longitude___ and ___latitude___ values to each and every single pixels of these images. These longitudes and latitudes, later, will be used to find a relation between the ord
+Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given intensity values of each pixel (see 2.2. for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
 
 
-# 2. Land Cover Classification Repository Tree
+# 3. Land Cover Classification Repository Tree
 
 The following tree shows the contents of this repository, 
 
@@ -77,35 +69,20 @@ Where in the following each of the contents is briefly explained.
 
 ## 2.1 Content Description
 
-___templates___: Is a directory that contains two html files; ___index.html___ and ___result.html___. The two files are used in the ___api.py___ code to create an html page and give the ability to load the required images to run the classificatoin model. 
+___templates___: is a directory that contains two html files; ___index.html___ and ___result.html___. The two files are used in the ___api.py___ code to create an html page and give the ability to load the required images to run the classificatoin model. 
 
-___uploads___: Is a directory that contains the images to be uploaded into our model via html page.
+___uploads___: is a directory that contains the images to be uploaded into our model via html page.
 
-___api.py___: This file will provide the interface between our docker container and the user. It provides an html page where the usesd can upload images.
+___api.py___: this file will provide the interface between our docker container and the user. It provides an html page where the usesr can upload their images. Once the images have uploaded by the user it calls the convert.py file for creating a dataframe out of the uploaded images. Once the dataframe is ready it will call the ml.py to run the trained land model calssification on the prepared dataframe. Finally, it will call the visual.py to create a semantic map of the uploaded images based on the output of the ml.py. 
 
-___model.pk___: This is our ___trained___ machine learning/land cover classification model. The ___.pk___ extension shows the model has been pickled to be transferable. (The pickling process has been done using the pcikle package in python.)
+___model.pk___: this is our ___trained___ machine learning/land cover classification model. The ___.pk___ extension shows the model has been pickled to be transferable. (The pickling process has been done using ___pickle___ package in python.) 
 
-___Dockerfile___: This is the Dockerfile where we use to create an ubuntu 18.04 slim version. Once that ubuntu image has been created it will automatically set up a container with all the required specifications such as ability to connect to the local host. For dfurther information read the content of the Dockerfile.
-
-
-
-# ??. Running the Model
-
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container. Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you for your images to be uploaded. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is. After a few minutes (depending on how big your image is) you willl receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be tranfered from the container to local machine as this process will not happen automatically. This can be done in two way SCP or mannually.
+___Dockerfile___: this is the Dockerfile where we use to create an ubuntu 18.04 slim version. Once the ubuntu image has been created it will automatically set up a container with all the required specifications such as the ability to connect to the local host. For further information read the content of the Dockerfile (see 3 for the location of the Dockerfile).
 
 
 
-# 2. Satellite Imagery Acquisition
+# 4. Running the Model
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the processed satellite imageries are provided in the image repository.
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container. Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done in two way SCP or mannually.
 
-
-# 3. Codes' Description
-
-
-There are two ...
-# 4. Docker Container
-
-
-# 5. Python Flask
-
+> docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
