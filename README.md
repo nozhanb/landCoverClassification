@@ -81,8 +81,16 @@ ___Dockerfile___: this is the Dockerfile where we use to create an ubuntu 18.04 
 
 
 
-# 4. Running the Model
+## 4. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container. Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done in two way SCP or mannually.
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container. Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done in two way SCP or mannually (see the command below).
 
 > docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
+> E.G. 123456789f scp dev:/home/docker/foo.txt .
+
+Where the above line given in the example transfers ___foo.txt___ located at ___dev:/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
+
+
+## 5. Performance
+
+It
