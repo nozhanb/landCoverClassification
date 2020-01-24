@@ -99,7 +99,7 @@ Given the model is simple and there has been no feature enginering, one cannot e
 
 <img src="italy100P10N.png" width="300" height="300" alt = "Training = 100; N = 10">
 <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
-<img src="italy100P10N.png" width="300" height="300" alt = "Training = 50000; N = 10">
+<img src="italy50000P10N.png" width="300" height="300" alt = "Training = 50000; N = 10">
 
 
 
