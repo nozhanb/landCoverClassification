@@ -4,21 +4,23 @@ The purpose of this process is to train a simple land cover classification model
 
 # 1. Introduction
 
-The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts of running a land model classification on a local browser via Docker containers. However, if you are intersted to train your own model, then you should navigate to the trainingModel directory and their you can train your model by replacing the already existing images with your own images (read 2.1 for more details on making a training data set).
+The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts of running a land model classification on a local browser through a Docker container. However, if you are intersted in training your own model, then you should navigate to the trainingModel directory and there you can train your model by replacing the already existing images with your own images (read 2.1 for more details on making a training data set).
 
 # 2. Model Training
 
-In order to train land model classification, one needs a training set and a test set. The following sections show how a training set and a test set were created.
+In order to train the land cover classification model, one needs a training set and a test set. Below you can find a short description of the processes through which a training set and a test set were prepared.
 
-## 2.1 Training Dataset
+## 2.1 Satellite Imagery Acquisition
 
-The aim is to create a ___CSV___ file with 5 different columns in it including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel. Each pixel belongs to the cropped out pieces of the satellite imageries. In the following the process of creating the CSV file will be explained.
+All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory.
 
-### 2.1.1 Satellite Imagery Acquisition
+## 2.2 Training Data Set
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the image directory.
+The aim is to create a ___CSV___ file with 5 different columns in including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1024650 (1265 x 810) rows for each pixel in that image and five columns four of which showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done five different images each representing a land cover type.
 
-### 2.1.2 Training Set, Test Set, and Model Preparation
+### 2.3 Test Data Set
+
+Test set preparation process is similar to the training set preparation process with one difference. The difference comes from the fact that in the test set we will not have 
 
 In order to train a land cover classification model one needs a training dataset. To prepare your training and test datasets one has to run the first block and the second block of the notebook.
 
