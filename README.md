@@ -101,5 +101,5 @@ Given the model is simple and there has been no feature enginering, one cannot e
 <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
 <img src="italy50000P10N2.png" width="300" height="300" alt = "Training = 50000; N = 10">
 
-
+Remember to add the F1 scoer, docker scp, docker restart, docker exec, band naming, band numbering of the original images!
 
