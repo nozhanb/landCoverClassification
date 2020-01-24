@@ -94,4 +94,6 @@ The above line in the example transfers ___foo.txt___ stored at ___dev:/home/doc
 
 ## 5. Performance
 
-Given the model is simple and there has been no feature enginering involved, one cannot expect very accurate results. However, by running this model several times there 
+Given the model is simple and there has been no feature enginering, one cannot expect very accurate results. However, by providing more training and more diverse set of training images of each land cover type the model can reach a higher accuracy. An example of this is provide below.
+
+
