@@ -12,7 +12,7 @@ In order to train the land cover classification model, one needs a training set 
 
 ### 2.1 Satellite Imagery Acquisition
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
+All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that in order to acquire the infrared intensity values one has to create an account on EO browser. Also, by creating an account on EO browser you will have more options to work with when it comes to downloading an image including the single band acquisition (what we need for this work) or the format of the output file (e.g. ___png___, ___tiff___).
 
 ### 2.2 Training Data Set
 
@@ -79,11 +79,20 @@ ___model.pk___: this is our ___trained___ machine learning/land cover classifica
 
 ___Dockerfile___: this is the Dockerfile where we use to create an ubuntu 18.04 slim version. Once the ubuntu image has been created it will automatically set up a container with all the required specifications such as the ability to connect to the local host. For further information read the content of the Dockerfile (see 3 for the location of the Dockerfile).
 
+## 4. Docker Container
+
+Docker container plays an important role in this work. Once the machine learning model is ready the user has to put the model into a docker container. It is important to follow the order. A docker container is built upon a docker image and a docker image is built upon a dockerfile. A dockerfile provides all the necessary ingredients for creating a docker image (and later a container) with specific feature for a specific task. For the purpose of this work a dockerfile has been provided (see section 3). 
+
+To build a docker image the user needs to type in the following command in the terminal (see [docker build](https://docs.docker.com/engine/reference/commandline/image_build/)
+
+> docker image build -f Dockerfile
+
+Where the Dockerfile is the file that exist in the current directory. It takes several minutes to build the image. Once the image is ready the user has to build a container from the image. This can be accomplished by the following command 
 
 
-## 4. Running the Model
+## 5. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container. Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done by ___[SCP](https://docs.docker.com/v17.12/machine/reference/scp/)___ command (see the command below).
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container (see for more details on Docker). Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done by ___[SCP](https://docs.docker.com/v17.12/machine/reference/scp/)___ command (see the command below).
 
 > docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
 
@@ -101,5 +110,5 @@ Given the model is simple and there has been no feature enginering, one cannot e
 <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
 <img src="italy50000P10N2.png" width="300" height="300" alt = "Training = 50000; N = 10">
 
-Remember to add the F1 scoer, docker scp, docker restart, docker exec, band naming, band numbering of the original images!
+Remember to add the F1 scoer, docker scp, docker restart, docker exec, band naming, band numbering of the original images! And the local ip address!
 
