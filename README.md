@@ -24,7 +24,7 @@ the above line show the name of the image extract from a zip file along with thr
 
 The user should note that the naming of the image were altered for the purpose of this work. In order to be able to run the model (in section 5) the user has to follow a secific naming format similar to the following.
 
-> from date_Sentinel2_True color.png to test_Sentinel2_True color.png
+> from date_Sentinel2_True color.png === to ===> test_Sentinel2_True color.png
 
 The data part of the downloaded image needs to be replaced by the word ___test___. The user can change this behavior of the code by navigating to the ___convert.py___ file and replacing the word ___test___ with their desired syntax/behavior.
 
