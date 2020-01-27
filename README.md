@@ -136,8 +136,10 @@ The above line in the example transfers ___foo.txt___ stored at ___dev:/home/doc
 
 Given that the model is simple and no feature enginering was involved, one cannot expect an accurate output. However, by providing a more diverse set of training images of each land cover type the model can reach a higher accuracy. An example of this is provide below. 
 
-
-<img src="italy100P10N.png" width="300" height="300" alt = "Training = 100; N = 10">
+<figure>
+  <img src="italy100P10N.png" width="300" height="300" alt = "Training = 100; N = 10">
+  <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+</figure>
 <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
 <img src="italy50000P10N2.png" width="300" height="300" alt = "Training = 50000; N = 10">
 
