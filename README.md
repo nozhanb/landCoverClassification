@@ -129,7 +129,7 @@ Once you have downloaded/cloned the repository, use the ___Dockerfile___ to crea
 
 > docker cp [OPTIONS] CONTAINER-Name-or-ID:path_to_image_in_docker_container path_to_a_location_on_local_machine
 
-> e.g. ===> docker cp f12c3456dg789s:/home/docker/foo.txt .
+> e.g. ===> docker cp 9314b568d859:/home/docker/foo.txt .
 
 The above line in the example transfers ___foo.txt___ stored at ___/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
 
