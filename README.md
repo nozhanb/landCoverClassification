@@ -101,10 +101,11 @@ Where the above command lists all existing containers and shows their status. If
 
 > docker restart docker name/id
 
-Given a docker name or id the the above command will restart the container. 
+Given a docker name or id the the above command will restart the container. Finally, if the user wants to have direct access to a docker container the following command will help you to do so (see [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) for more details).
 
+> docker exec -i -t dockerName/id /bin/bash
 
-
+Given a docker name or id the above command will connect the user directly to the container's shell and the user can navigate inside the container.
 
 ## 5. Running the Model
 
