@@ -139,12 +139,12 @@ The above line in the example transfers ___foo.txt___ stored at ___/home/docker/
 Given that the model is simple and no feature enginering was involved, one cannot expect an accurate output. However, it is possible to train a more accurate model by providing a more diverse set of training images of each land cover type. An example of this is shown below. The first image shows the output of a model trained on 100 training pixels from each class. The middle image is the true color image of the same area. And the bottom image is the output of a model trained on 50,000 training pixels from each class (also same area). In the first image, shadows are detected as water bodies while this issue has been resolved in the second model where this model is well capable of detecting inland water bodies. However, the second model fails to detect the ocean water (on the top right hand corner). On the contrary, the first model (top image) is good at detecting ocean water unlike the first model.
 
 <figure>
-  <img src="italy100P10N.png" width="300" height="300" alt = "Training = 100 N = 10" class="center">
   <figcaption>Fig.1: Output of the model trained on 100 pixles of each land cover type.</figcaption>
+  <img src="italy100P10N.png" width="300" height="300" alt = "Training = 100 N = 10" class="center">
 </figure>
 <figure>
-  <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
   <figcaption>Fig.2: True color image.</figcaption>
+  <img src="italyTrue.png" width="300" height="300" alt = "True color image (Italy)">
 </figure>
 <figure>
   <img src="italy50000P10N2.png" width="300" height="300" alt = "Training = 50000; N = 10">
