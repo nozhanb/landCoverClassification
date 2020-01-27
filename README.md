@@ -83,11 +83,27 @@ ___Dockerfile___: this is the Dockerfile where we use to create an ubuntu 18.04 
 
 Docker container plays an important role in this work. Once the machine learning model is ready the user has to put the model into a docker container. It is important to follow the order. A docker container is built upon a docker image and a docker image is built upon a dockerfile. A dockerfile provides all the necessary ingredients for creating a docker image (and later a container) with specific feature for a specific task. For the purpose of this work a dockerfile has been provided (see section 3). 
 
-To build a docker image the user needs to type in the following command in the terminal (see [docker build](https://docs.docker.com/engine/reference/commandline/image_build/)
+To build a docker image the user needs to type in the following command in the terminal (see [docker build](https://docs.docker.com/engine/reference/commandline/image_build/) for more details)
 
 > docker image build -f Dockerfile
 
-Where the Dockerfile is the file that exist in the current directory. It takes several minutes to build the image. Once the image is ready the user has to build a container from the image. This can be accomplished by the following command 
+Where the Dockerfile is the file that exist in the current directory. It takes several minutes to build the image. Once the image is ready the user can build the container from the image. This can be accomplished by the following command (see [docker create](https://docs.docker.com/engine/reference/commandline/create/) for more details on different flags).
+
+> docker create -p 5000 -t -i --name containerName Image
+
+The above command is an example of the possible options/flags one can provide to create a docker container. The above command will create a container with the given containerName from the Image (the one we built in the previous step). Also, it exposes the port 5000 of the container to the local host (you can expose other ports too).
+
+A container may stop running for a variety of reasons. The status of container can be checked by the following command 
+
+> docker ps --all
+
+Where the above command lists all existing containers and shows their status. If a given container has stopped working one can restart the container using the following command (see [docker restart](https://docs.docker.com/engine/reference/commandline/restart/) for more details). 
+
+> docker restart docker name/id
+
+Given a docker name or id the the above command will restart the container. 
+
+
 
 
 ## 5. Running the Model
