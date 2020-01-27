@@ -14,11 +14,25 @@ In order to train the land cover classification model, one needs a training set 
 
 All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that in order to acquire the infrared intensity values one has to create an account on EO browser. Also, by creating an account on EO browser you will have more options to work with when it comes to downloading an image including the single band acquisition (what we need for this work) or the format of the output file (e.g. ___png___, ___tiff___).
 
-### 2.2 Training Data Set
+### 2.2 Band numbering and image names
+
+Once the user has downloaded an image from the EO browser the image name by defaul will be something similar to the following:
+
+> 2020-01-11, Sentinel-2B L1C, B08.png
+
+the above line show the name of the image extract from a zip file along with three other images. The data part of the name shows the data at which the satellite took the image. The second part (i.e. Sentinel-2B L1C) show the name of the satellite that acquired this image. And the last part (i.e. B08) shows the band to which the filter is sensitive the most which in this case 08 indicates it is infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details). 
+
+The user should note that the naming of the image were altered for the purpose of this work. In order to be able to run the model (in section 5) the user has to follow a secific naming format similar to the following.
+
+> from date_Sentinel2_True color.png to test_Sentinel2_True color.png
+
+The data part of the downloaded image needs to be replaced by the word ___test___. The user can change this behavior of the code by navigating to the ___convert.py___ file and replacing the word ___test___ with their desired syntax/behavior.
+
+### 2.3 Training Data Set
 
 The aim is to create a ___CSV___ file with 5 different columns including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1,024,650 (1265 x 810) rows each for a pixel and five columns of which four showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done for five different classes of image each representing a land cover type.
 
-### 2.3 Test Data Set
+### 2.4 Test Data Set
 
 Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given intensity values of each pixel (see 2.2. for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
 
@@ -109,7 +123,7 @@ Given a docker name or id the above command will connect the user directly to th
 
 ## 5. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create the required docker image and then run the docker image to create the container (see for more details on Docker). Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done by ___[SCP](https://docs.docker.com/v17.12/machine/reference/scp/)___ command (see the command below).
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Note that  Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done by [SCP](https://docs.docker.com/v17.12/machine/reference/scp/) command (see the command below).
 
 > docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
 
