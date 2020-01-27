@@ -115,21 +115,23 @@ Where the above command lists all existing containers and shows their status. If
 
 > docker restart docker name/id
 
-Given a docker name or id the the above command will restart the container. Finally, if the user wants to have direct access to a docker container the following command will help you to do so (see [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) for more details).
+Given a docker name or id the the above command will restart the container. If the user wants to have direct access to a docker container the following command will help you to do so (see [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) for more details).
 
 > docker exec -i -t dockerName-id /bin/bash
 
-Given a docker name or id the above command will connect the user directly to the container's shell and the user can navigate inside the container.
+Given a docker name or id the above command will connect the user directly to the container's shell and the user can navigate inside the container. To connect to the container through local machine's web browser the user has to type in ___172.17.0.3:5000___ in the web browser. This will connect the local host/machine the container. The 172.17.0.3 address is the container's ip address and 5000 is the port of the container through which the container is exposed to the local host. The above ip address can be seen by typing in the following command in the terminal.
+
+> docker inspect containerName-or-id
 
 ## 5. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, type in the browser "0.0.0.3000". This will connect you to the container. Then an ___html___ page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. After a few minutes (depending on how big your input imagea are) you will receive a message stating "Processing done!". This means the classification is over. The user should note that the image needs to be transfered from the container to local machine as this process will not happen automatically. This can be done by [SCP](https://docs.docker.com/v17.12/machine/reference/scp/) command (see an example below).
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, type in the browser "172.17.0.3:5000" (see 4 for more details). Then an ___html___ page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. After a few minutes (depending on how big your input imagea are) you will receive a message stating "Processing done!". This means the classification is over. The user should note that the image needs to be transfered from the container to local machine as this process will not happen automatically. This can be done by [cp](https://docs.docker.com/engine/reference/commandline/cp/) command (see an example below).
 
-> docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
+> docker cp [OPTIONS] CONTAINER-Name-or-ID:path_to_image_in_docker_container path_to_a_location_on_local_machine
 
-> e.g. ===> f12c3456dg789s scp dev:/home/docker/foo.txt .
+> e.g. ===> docker cp f12c3456dg789s:/home/docker/foo.txt .
 
-The above line in the example transfers ___foo.txt___ stored at ___dev:/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
+The above line in the example transfers ___foo.txt___ stored at ___/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
 
 
 ## 5. Performance
