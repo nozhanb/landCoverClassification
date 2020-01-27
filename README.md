@@ -123,7 +123,7 @@ Given a docker name or id the above command will connect the user directly to th
 
 ## 5. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, just type in the browser "0.0.0.3000". This will connect you to the container. Then the an html page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. Note that  Once uploaded the images will be sent to the container where our classificaton model is running. After a few minutes (depending on how big your image is) you will receive a message stating "Processing done!". This means the classification is over. The user needs to remember that the image should be transfered from the container to local machine as this process will not happen automatically. This can be done by [SCP](https://docs.docker.com/v17.12/machine/reference/scp/) command (see the command below).
+Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, type in the browser "0.0.0.3000". This will connect you to the container. Then an ___html___ page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. After a few minutes (depending on how big your input imagea are) you will receive a message stating "Processing done!". This means the classification is over. The user should note that the image needs to be transfered from the container to local machine as this process will not happen automatically. This can be done by [SCP](https://docs.docker.com/v17.12/machine/reference/scp/) command (see an example below).
 
 > docker_container_id scp path_to_image_in_docker_container path_to_desired_location_on_local_machine
 
@@ -134,7 +134,7 @@ The above line in the example transfers ___foo.txt___ stored at ___dev:/home/doc
 
 ## 5. Performance
 
-Given the model is simple and there has been no feature enginering, one cannot expect very accurate results. However, by providing more training and more diverse set of training images of each land cover type the model can reach a higher accuracy. An example of this is provide below.
+Given that the model is simple and no feature enginering was involved, one cannot expect an accurate output. However, by providing a more diverse set of training images of each land cover type the model can reach a higher accuracy. An example of this is provide below. 
 
 
 <img src="italy100P10N.png" width="300" height="300" alt = "Training = 100; N = 10">
