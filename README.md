@@ -22,11 +22,11 @@ Once the user has downloaded an image from the EO browser the image name by defa
 
 the above line show the name of the image extract from a zip file along with three other images. The data part of the name shows the data at which the satellite took the image. The second part (i.e. Sentinel-2B L1C) show the name of the satellite that acquired this image. And the last part (i.e. B08) shows the band to which the filter is sensitive the most which in this case 08 indicates it is infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details). 
 
-The user should note that the naming of the image were altered for the purpose of this work. In order to be able to run the model (in section 5) the user has to follow a secific naming format similar to the following.
+The user should note that for the purpose of this work the original names of the files were altered. In order to be able to run the model (in section 5) the user has to convert the name of the test images(for each of the four bands) from the original names to new names by replacing the date part of the file name with the word ___image___ (see the line below)
 
-> from date_Sentinel2_True color.png === to ===> test_Sentinel2_True color.png
+> from 2020-01-11_Sentinel2_B08.png === to ===> image_Sentinel2_B08.png
 
-The data part of the downloaded image needs to be replaced by the word ___test___. The user can change this behavior of the code by navigating to the ___convert.py___ file and replacing the word ___test___ with their desired syntax/behavior.
+The user can change this behavior of the code by navigating to the ___trainingModel___ ---> ___landCoverClassification.ipynb___ ---> ___testSet___.
 
 ### 2.3 Training Data Set
 
