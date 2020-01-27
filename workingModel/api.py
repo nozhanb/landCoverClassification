@@ -9,6 +9,7 @@ import os
 import ml 
 import visual
 import convert
+import pathlib
 from flask import Flask, flash, url_for, redirect
 from flask import request
 from flask import render_template
@@ -18,7 +19,7 @@ from werkzeug import secure_filename
 #from visual import cityMap
 
 api = Flask(__name__)
-UPLOAD_FOLDER = '/home/nozhan/Documents/docker/city/uploads'
+UPLOAD_FOLDER = pathlib.Path(uploads)
 api.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @api.route('/', methods = ['GET', 'POST'])
