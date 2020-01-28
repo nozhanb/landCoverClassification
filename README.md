@@ -4,23 +4,23 @@ This repository provides the necessary data for running/training a simple land c
 
 ## 1. Introduction
 
-The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts of running a land model classification on a local browser through a Docker container. However, if you are intersted in training your own model, then you should navigate to the trainingModel directory and there you can train your model by replacing the already existing images with your own images (read 2.1 for more details on making a training data set).
+The land cover classification repository contains two different directories; ___trainingModel___ and ___workingModel___. If you are not interested in training a new model then you should navigate to the workingModel directory as this directory conains all the necessary parts for running a land model classification on a local browser by means of a Docker container. However, if you are intersted in training your own model, then you should navigate to the trainingModel directory and there you can train your model by running the ___landCoverClassification.ipynb___ and replacing the already existing training images with your own images (read 2.1 for more details on making a training data set).
 
 ## 2. Model Training
 
-In order to train the land cover classification model, one needs a training set and a test set. Below you can find a short description of the processes through which a training set and a test set were prepared.
+In order to train a land cover classification model, one needs a training set and a test set. Below you can find a short description of the processes through which a training set and a test set were prepared. However, before that data acquisition process will be explained.
 
 ### 2.1 Satellite Imagery Acquisition
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that in order to acquire the infrared intensity values one has to create an account on EO browser. Also, by creating an account on EO browser you will have more options to work with when it comes to downloading an image including the single band acquisition (what we need for this work) or the format of the output file (e.g. ___png___, ___tiff___).
+All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that this model works based on monochoromatic images of a given area. It means that unlike a true color image that has three RGB channels here (for both training and test steps) instead of one three-channel image we need to have four separate images of the same area each of which containing intensity values of a specific band (i.e. R, G, B, and infrared). To download such images from EO Browser one has to create an account on EO browser.
 
-### 2.2 Band numbering and image names
+### 2.2 Band Numbering and Image Names
 
-Once the user has downloaded an image from the EO browser the image name by defaul will be something similar to the following:
+Once the user has downloaded an image from the EO browser the image name (by defaul) will be something similar to the following:
 
 > 2020-01-11, Sentinel-2B L1C, B08.png
 
-the above line show the name of the image extract from a zip file along with three other images. The data part of the name shows the data at which the satellite took the image. The second part (i.e. Sentinel-2B L1C) show the name of the satellite that acquired this image. And the last part (i.e. B08) shows the band to which the filter is sensitive the most which in this case 08 indicates it is infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details). 
+The above line shows the name of the image extracted from the EO Broweser zip file along with three other images. The date/first part of the name shows the data at which the satellite took the image. The second part (i.e. Sentinel-2B L1C) show the name of the satellite that acquired this image. And the last part (i.e. B08) shows the band to which the filter is sensitive the most which in this case 08 indicates it is infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details). 
 
 The user should note that for the purpose of this work the original names of the files were altered. In order to be able to run the model (in section 5) the user has to convert the name of the test images(for each of the four bands) from the original names to new names by replacing the date part of the file name with the word ___image___ (see the line below)
 
