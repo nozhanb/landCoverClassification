@@ -30,11 +30,11 @@ The user can change this behavior of the code by navigating to the ___trainingMo
 
 ### 2.3 Training Data Set
 
-The aim is to create a ___CSV___ file with 5 different columns including ___red___, ___green___, ___blue___, ___infrared___ intensities, and ___land cover type___. (See section 2.1.2 for more details on infrared intensity.) Each row in this CSV file represents a pixel in the moochoromatic (single band/color) training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means at the end of the process there will be a dataframe with 1,024,650 (1265 x 810) rows each for a pixel and five columns of which four showing band intensities and the last one filled with letter ___w___ that stands for water. This process is done for five different classes of image each representing a land cover type.
+The aim is to create a ___CSV___ file with 5 different columns including ___red___, ___green___, ___blue___, ___infrared___ pixel intensities, and ___land cover type___. Each row in this CSV file represents a pixel in the monochromatic training images. Pixel values of all four images/bands are read simultaneously and stored in each row and column of the traingingSet.CSV file. For instance, the water image in the training directory contains 1265 x 810 pixels. This means that at the end of the process there will be a dataframe with 1,024,650 (1265 x 810) rows each for a pixel. There are alos five columns of which four show band intensities (pixel values) and the last column filled with letter ___w___ that stands for water. This process is done for five different classes of images each representing a land cover type.
 
 ### 2.4 Test Data Set
 
-Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given intensity values of each pixel (see 2.2. for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository).
+Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given pixel values (see 2.3 for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see section 3).
 
 
 ## 3. Land Cover Classification Repository Tree
@@ -79,7 +79,7 @@ root(landCoverClassifiation)
 
 ```
 
-Where in the following each of the contents is briefly explained.
+Where in the following each content is briefly explained.
 
 ### 3.1 Content Description
 
