@@ -12,21 +12,21 @@ In order to train a land cover classification model, one needs a training set an
 
 ### 2.1 Satellite Imagery Acquisition
 
-All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that this model works based on monochoromatic images of a given area. It means that unlike a true color image that has three RGB channels here (for both training and test steps) instead of one three-channel image we need to have four separate images of the same area each of which containing intensity values of a specific band (i.e. R, G, B, and infrared). To download such images from EO Browser one has to create an account on EO browser.
+All the acquired satellite imageries in this work were collected from [EO Browser](https://www.sentinel-hub.com/explore/eobrowser). However, for the purpose of this work the required satellite imageries are provided in the ___trainingImage___ directory under the ___trainingModel___ directory (see 3 for file system structure of this repository). It is important to note that this model works based on monochromatic images of a given area. It means that unlike a true color image that has three RGB channels here (for both training and test steps) instead of one three-channel image we need to have four separate images of the same area each of which containing intensity values of a specific band (i.e. R, G, B, and infrared). To download such images from EO Browser one has to create an account on EO browser.
 
 ### 2.2 Band Numbering and Image Names
 
-Once the user has downloaded an image from the EO browser the image name (by defaul) will be something similar to the following:
+Once the user has downloaded an image from the EO browser the image name (by default) will be something similar to the following:
 
 > 2020-01-11, Sentinel-2B L1C, B08.png
 
-The above line shows the name of the image extracted from the EO Broweser zip file along with three other images. The date/first part of the name shows the data at which the satellite took the image. The second part (i.e. Sentinel-2B L1C) show the name of the satellite that acquired this image. And the last part (i.e. B08) shows the band to which the filter is sensitive the most which in this case 08 indicates it is infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details). 
+The above line shows the name of the image extracted from the EO Browser zip file along with three other images. The date/first part of the name shows the date at which the image was taken by the satellite. The second part (i.e. Sentinel-2B L1C) shows the name of the satellite that took the image. And the last part (i.e. B08) indicates that this image holds the intensity values of this band which in this case B08 shows this image holds the intensity values of the infrared band. B04, B03, and B02 represent red, green, and blue bands respectively (see [this](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial) for more details on bands in sentinel 2 satellite). 
 
-The user should note that for the purpose of this work the original names of the files were altered. In order to be able to run the model (in section 5) the user has to convert the name of the test images(for each of the four bands) from the original names to new names by replacing the date part of the file name with the word ___image___ (see the line below)
+The user should note that for the purpose of this work the original names of the files were altered. In order to be able to run the model (in section 5) the user has to convert the name of the test images (for each of the four bands) from the original names to new names by replacing the date part of the file name with the word ___image___ (see the line below)
 
-> from 2020-01-11_Sentinel2_B08.png === to ===> image_Sentinel2_B08.png
+> from 2020-01-11_Sentinel2_B08.png === to ===> ___image____Sentinel2_B08.png
 
-The user can change this behavior of the code by navigating to the ___trainingModel___ ---> ___landCoverClassification.ipynb___ ---> ___testSet___.
+The user can change this behavior of the code by navigating to the ___trainingModel___ ---> ___landCoverClassification.ipynb___ ---> ___testSet___. There you can change the word image by any other words or completely remove this behavior of thr code.
 
 ### 2.3 Training Data Set
 
