@@ -34,7 +34,7 @@ The aim is to create a ___CSV___ file with 5 different columns including ___red_
 
 ### 2.4 Test Data Set
 
-Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given pixel values (see 2.3 for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see section 3).
+Test set preparation process is similar to the training set preparation process with the exception that there is no class column as we are going to predict the class of each pixel based on the given pixel values (see 2.3 for more details on data set preparation process). The image used for test set preparation is stored in the ___testImage___ directory under the ___trainingModel___ directory (see ___sec.___ 3 for more details).
 
 
 ## 3. Land Cover Classification Repository Tree
@@ -91,7 +91,7 @@ ___api.py___: will provide the interface between the docker container and the us
 
 ___model.pk___: this is our ___trained___ land cover classification model. The ___.pk___ extension shows the model has been pickled to be transferable. (The pickling process is done using ___pickle___ package in python.) 
 
-___Dockerfile___: it is used to create an ubuntu 18.04 slim version. Once the ubuntu image is created the user needs to create a container using created image (see 4 for more details on docker container creation).
+___Dockerfile___: it is used to create an ubuntu 18.04 slim version. Once the ubuntu image is created the user needs to create a container using created image (see ___sec.___ 4 for more details on docker container creation).
 
 ## 4. Docker Container
 
@@ -125,13 +125,13 @@ Given a docker name or id the above command will connect the user directly to th
 
 ## 5. Running the Model
 
-Once you have downloaded/cloned the repository, use the ___Dockerfile___ to create docker image and then the docker container and make sure the container is running (see 4 for more details). Next, type in the browser "172.17.0.3:5000" (see 4 for more details). Then an ___html___ page will pop up and asks you to upload your images. Up load your images and click on ___upload___ button. After a few minutes (depending on how big your input imagea are) you will receive a message stating "Processing done!". This means the classification is over. The user should note that the image needs to be transfered from the container to local machine as this process will not happen automatically. This can be done by [cp](https://docs.docker.com/engine/reference/commandline/cp/) command (see an example below).
+Once you have downloaded/cloned the repository, use ___Dockerfile___ to create a docker image and then a docker container and make sure the container is running (see ___sec.___ 4 for more details). Next, type in the browser "___172.17.0.3:5000___" (see ___sec.___ 4 for more details). Then, an ___html___ page will pop up and asks you to upload your images. Up load your test images and click on ___upload___ button. After a few minutes (depending on how big your input images are) you will receive a message stating "Processing done!". This means the classification is over. The user should note that the image needs to be transfered from the container to local machine manually. This can be done by [cp](https://docs.docker.com/engine/reference/commandline/cp/) command (see an example below).
 
 > docker cp [OPTIONS] CONTAINER-Name-or-ID:path_to_image_in_docker_container path_to_a_location_on_local_machine
 
-> e.g. ===> docker cp 9314b568d859:/home/docker/foo.txt .
+> e.g. ===> docker cp 9314b568d859:/home/docker/thematicMap.png .
 
-The above line in the example transfers ___foo.txt___ stored at ___/home/docker/___ inside the container with the id ___123456789f___ to ___.___ the current directory on our local machine.
+The above line in the example transfers ___thematicMap.png___ stored at ___/home/docker/___ inside the container with the id ___9314b568d859___ to ___.___ the current directory on our local machine.
 
 
 ## 5. Performance
