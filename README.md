@@ -1,6 +1,6 @@
 # Land Cover Classification
 
-The purpose of this process is to train a simple land cover classification model that is capable of classifing 5 different classes given a set of satellite images..
+This repository provides the necessary data for running/training a simple land cover classification model that is capable of classifing 5 different classes given a set of satellite images.
 
 ## 1. Introduction
 
