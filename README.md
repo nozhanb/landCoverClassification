@@ -83,15 +83,15 @@ Where in the following each content is briefly explained.
 
 ### 3.1 Content Description
 
-___templates___: is a directory that contains two html files; ___index.html___ and ___result.html___. The two files are used in the ___api.py___ code to create an html page and give the ability to load the required images to run the classificatoin model. 
+___templates___: contains two html files; ___index.html___ and ___result.html___. The two files are used in the ___api.py___ code to create an html page and give the ability to load the required images to run the classification model. 
 
-___uploads___: is a directory that contains the images to be uploaded into our model via html page.
+___uploads___: contains images to be uploaded in the html page.
 
-___api.py___: this file will provide the interface between our docker container and the user. It provides an html page where the usesr can upload their images. Once the images have uploaded by the user it calls the convert.py file for creating a dataframe out of the uploaded images. Once the dataframe is ready it will call the ml.py to run the trained land model calssification on the prepared dataframe. Finally, it will call the visual.py to create a semantic map of the uploaded images based on the output of the ml.py. 
+___api.py___: will provide the interface between the docker container and the user. It provides an html page where the user can upload their images. Once the images are uploaded it calls the ___convert.py___ for creating a dataframe from the uploaded images. Once the dataframe is ready it will call the ___ml.py___ to run the trained land cover calssification on dataframe. Finally, it will call the ___visual.py___ to create a semantic map of the uploaded images based on the output of the ___ml.py___. 
 
-___model.pk___: this is our ___trained___ machine learning/land cover classification model. The ___.pk___ extension shows the model has been pickled to be transferable. (The pickling process has been done using ___pickle___ package in python.) 
+___model.pk___: this is our ___trained___ land cover classification model. The ___.pk___ extension shows the model has been pickled to be transferable. (The pickling process is done using ___pickle___ package in python.) 
 
-___Dockerfile___: this is the Dockerfile where we use to create an ubuntu 18.04 slim version. Once the ubuntu image has been created it will automatically set up a container with all the required specifications such as the ability to connect to the local host. For further information read the content of the Dockerfile (see 3 for the location of the Dockerfile).
+___Dockerfile___: it is used to create an ubuntu 18.04 slim version. Once the ubuntu image is created the user needs to create a container using created image (see 4 for more details on docker container creation).
 
 ## 4. Docker Container
 
